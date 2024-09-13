@@ -1,0 +1,266 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container-main {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+    height: 13%;
+    color: #ffffff;
+    background-color: rgb(0, 0, 0);
+}
+
+.text-book-available {
+    font-family: "Times New Roman", serif;
+    font-size: 300%;
+
+}
+
+.search-by-page {
+    width: 20%;
+    height: 15%;
+}
+
+.container-books {
+    background-color: black;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 60%;
+    float: left;
+}
+
+
+.container-selected {
+    display: flex;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    flex-direction: column;
+    width: 40%;
+    float: left;
+
+}
+
+.text-list {
+    font-family: "Times New Roman", serif;
+    font-size: 400%;
+    color: #fff;
+    margin: 1%;
+    text-align: center;
+}
+
+.text-list-inside {
+    font-family: "Times New Roman", serif;
+    font-size: 160%;
+    margin: 0;
+    color: #fff;
+}
+
+.current-library {
+    display: flex;
+    gap: 1%;
+    padding-left: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+
+}
+
+.list-genre {
+    width: 120px;
+    height: 50px;
+    display: flex;
+    border-radius: 5px;
+    background-color: rgb(53, 53, 53);
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+    cursor: pointer;
+}
+
+.list-genre:hover {
+    background-color: rgb(90, 90, 90);
+}
+
+.list-genre ul {
+    border-radius: 4%;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    list-style: none;
+    background-color: rgb(49, 49, 49);
+    width: 260px;
+    font-size: 170%;
+    min-height: min-content;
+    max-height: 400px;
+    overflow-y: scroll;
+    top: 7%;
+    left: 40%;
+}
+
+.list-genre ul li {
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.list-genre ul li:hover {
+    background-color: rgb(34, 34, 34);
+}
+
+
+.card-book {
+    background-color: rgb(65, 65, 65);
+    min-width: 320px;
+    max-width: 320px;
+    height: 600px;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1%;
+    border: 1.5px solid rgb(0, 0, 0);
+}
+
+.card-books-selected {
+    display: flex;
+    gap: 1%;
+    margin-top: 1%;
+    border-radius: 20px;
+    padding-top: 2%;
+    padding-left: 2%;
+    box-sizing: border-box;
+    justify-content: center;
+    border: 2px solid rgb(56, 56, 56);
+    height: 90%;
+    width: 97%;
+    background-image: url('https://img.freepik.com/fotos-premium/fotografia-gratuita-resumen-vacio-liso-purpura-claro-telon-fondo-sala-estudio_489503-242.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1726099200&semt=ais_hybrid');
+    background-size: cover;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+.text-info-book p {
+    color: #fff;
+    margin: 1%;
+    font-family: "Times New Roman", serif;
+}
+
+.text-info-book {
+    display: flex;
+    width: 100%;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image-book {
+    object-fit: fill;
+
+    width: 100%;
+    height: 500px;
+    border: 2px solid rgb(31, 31, 31);
+}
+
+.search-by-page {
+    height: 50px;
+    border: none;
+    border-radius: 1%;
+    font-size: 120%;
+    padding-left: 1%;
+    box-sizing: border-box;
+    color: #ffffff; 
+    background-color: rgb(53, 53, 53);
+}
+
+.search-by-page:focus {
+    outline: none;
+}
+
+
+
+
+@media screen and (max-width:1100px) {
+    .list-genre ul {
+
+        top: 5%;
+        left: 30%;
+    }
+
+    .image-book {
+        height: 270px;
+    }
+
+    .container-books {
+        height: 50vh;
+        width: 100%;
+    }
+
+    .current-library {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .container-selected {
+        width: 100%;
+
+        height: 80vh;
+    }
+
+    .card-books-selected {
+        width: 97%;
+        height: 70%;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        overflow-x: scroll;
+    }
+
+    .card-book {
+        min-width: 200px;
+        height: 330px;
+
+    }
+
+    .text-info-book {
+        font-size: 60%;
+    }
+
+    .text-list {
+        font-size: 200%;
+        text-align: center;
+    }
+
+    .text-list-inside {
+
+        font-size: 100%;
+    }
+
+    .text-book-available {
+        font-size: 100%;
+        text-align: center;
+    }
+}
