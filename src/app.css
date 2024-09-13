@@ -93,6 +93,7 @@ body {
     align-items: center;
     overflow-y: scroll;
     cursor: pointer;
+    overflow-y:hidden;
 }
 
 .list-genre:hover {
@@ -195,7 +196,16 @@ body {
     box-sizing: border-box;
     color: #ffffff; 
     background-color: rgb(53, 53, 53);
+    -moz-appearance: textfield;
 }
+
+.search-by-page::-webkit-inner-spin-button,.search-by-page::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
 
 .search-by-page:focus {
     outline: none;
