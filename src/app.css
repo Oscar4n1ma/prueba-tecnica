@@ -1,7 +1,10 @@
+*{
+    scrollbar-width: thin;
+}
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 .container-main {

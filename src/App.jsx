@@ -3,13 +3,19 @@ import { useState } from "react";
 import db from "../books.json";
 import { useEffect } from "react";
 
+/*
+EL ARCHIVO books.json LO USO PARA CARGAR LOS LIBROS EN EL LOCALSTORAGE LA PRIMERA VEZ EN CASO DE QUE NO ESTEN GUARDADOS 
+EN EL LOCALSTORAGE ESTO PARA PODER SINCRONIZAR LOS LIBROS TOMADOS Y DISPONIBLES,
+ POR LO CUAL LA BASE DE DATOS SIMULADA NO ES books.json SINO EL LOCALSTORAGE
+*/
+
 export default function App() {
   const [books, setBooks] = useState([]);
   const [booksSelected, setBooksSelected] = useState([]);
   const [genres, setGenres] = useState([]);
 
 
-  // ESTA FUNCION FILTRA LOS GENEROS SEGUN EL GENERO INGRESADO
+  // ESTA FUNCION FILTRA LOS GENEROS SEGUN LOS GENEROS ACTUALES DE LOS LIBROS DE ARCHIVO books.json
   const filterByGenre = (genre) => {
     const currentBooks = JSON.parse(
       window.localStorage.getItem("current-books")
@@ -26,20 +32,20 @@ export default function App() {
     }
   };
 
-  // ESTA FUNCION TOMA UN NUMERO Y FILTRA LOS LIBROS QUE TENGAN UN NUMERO DE PAGINAS INFERIOR AL INGRESADO
+  // ESTA FUNCION TOMA UN NUMERO Y FILTRA LOS LIBROS QUE TENGAN UN NUMERO DE PAGINAS INFERIOR O IGUAL AL INGRESADO
   const filterByNumberPages = (pages) => {
     const currentBooks = JSON.parse(
       window.localStorage.getItem("current-books")
     );
-    
+
     // VALIDO QUE SEA UN NUMERO
-    if(pages===''){
+    if (pages === '') {
       alert('Porfavor ingresa un numero')
     }
-    else{
+    else {
       setBooks(currentBooks.filter((b) => b.pages <= Number(pages)));
     }
-  
+
   };
 
   // ESTA FUNCION SIRVE PARA OBTENER UN LIBRO DE LOS LIBROS DISPONIBLES, GUARDARLO EN LA LISTA DE LECTURA Y EN EL LOCALSTORAGE
@@ -60,7 +66,7 @@ export default function App() {
     );
   };
 
-// ESTA FUNCION SIRVE PARA OBTENER UN LIBRO DE LA LISTA DE LECTURA, GUARDARLO EN LIBROS DISPONIBLES Y EN EL LOCALSTORAGE
+  // ESTA FUNCION SIRVE PARA OBTENER UN LIBRO DE LA LISTA DE LECTURA, GUARDARLO EN LIBROS DISPONIBLES Y EN EL LOCALSTORAGE
   const setBookFromListSelected = (book) => {
     const currentBooks = JSON.parse(
       window.localStorage.getItem("current-books")
@@ -78,7 +84,7 @@ export default function App() {
     );
   };
 
-//////////////////////////////////////////////////////////////////
+  // ESTA FUNCION VERIFICA LO MODIFICADO EN EL STORAGE Y LO GUARDA EN LOS ESTADOS
   const handleStorageChange = (e) => {
     if (e.key === "to-read") {
       setBooksSelected(JSON.parse(e.newValue));
@@ -117,8 +123,6 @@ export default function App() {
     }
 
 
-
-    /////////////////////////////////////////////////////////////////////
     window.addEventListener("storage", handleStorageChange);
 
     return () => {
@@ -136,7 +140,7 @@ export default function App() {
           </p>
           <input className="search-by-page"
 
-          // ESTA FUNCION PERMITE APLICAR EL FILTRO POR NUMERO DE PAGINAS UNA VEZ PRESIONADA LA TECLA ENTER
+            // ESTA FUNCION PERMITE APLICAR EL FILTRO POR NUMERO DE PAGINAS UNA VEZ PRESIONADA LA TECLA ENTER
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 filterByNumberPages(e.target.value);
@@ -148,36 +152,33 @@ export default function App() {
 
 
 
-          <div className="list-genre" onClick={()=>{
-            ////////////////////////////////////////////////////////////////////////////
-           const element =  document.getElementById('xd')
-           if(element.style.display==='none'){
-            element.style.display ='flex'
-           }else{
-            element.style.display ='none'
-           }
+          <div className="list-genre" onClick={() => {
+
+            /* OBTENGO LA LISTA DE GENEROS Y VERIFICO SI ESTA EN PANTALLA O NO
+              EN  CASO DE QUE NO ESTE LO MUESTRA Y EN CASO DE QUE YA ESTE LO OCULTA
+            */
+            const element = document.getElementById('list-items-genre')
+            element.style.display = element.style.display === 'none' ? 'flex': 'none'
           }}>
             Generos
-            
-            <ul id="xd">
+            <ul id="list-items-genre">
             {genres.map((g, i) => (
-              <li
-              /////////////////////////////////////////////////////////////////////////
-                onClick={(e) => {
-                  filterByGenre(g);
-                }}
-                key={i}
-              >
-                {g}
-              </li>
-            ))}
+                <li
+                  onClick={(e) => {
+                    filterByGenre(g);
+                  }}
+                  key={i}
+                >
+                  {g}
+                </li>
+              ))}
             </ul>
-            
+
           </div>
         </div>
         <div
 
-        // CONTENEDOR DE LIROS ACTUALES DISPONIBLES
+          // CONTENEDOR DE LIROS ACTUALES DISPONIBLES
           className="current-library"
 
           // ESTA FUNCION PERMITE DEJAR DE ARRASTRAR SOBRE EL CONTENEDOR PARA ALMACENARLO NUEVAMENTE EN LIBROS DISPONIBLES
@@ -223,9 +224,9 @@ export default function App() {
         </p>
         <div
 
-        //CONTENEDOR DE LIBROS EN LA LISTA DE LECTURA
+          //CONTENEDOR DE LIBROS EN LA LISTA DE LECTURA
           className="cards-books card-books-selected"
-          
+
           //ESTA FUNCION PERMITE DEJAR DE ARRASTRAR SOBRE EL CONTENEDOR PARA ALMACENARLO EN LA LISTA DE LECTURA
           onDrop={(e) => {
             e.preventDefault();
